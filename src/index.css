@@ -27,7 +27,9 @@ code {
   display: flex;
   flex-direction: column;
   text-align: center;
+  justify-content: center;
   width: 100%;
+
   
 }
 .input_create_newUser{
@@ -42,21 +44,55 @@ code {
   transform: scale(1.01);
   border: 1px solid black;
 }
-.boton_create_newUser{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
+
+.link_crearCuenta{
+  margin: auto;
+  position: relative;
+  display:block;
+  margin-bottom: 1rem;
+  padding-bottom: 5px;
 }
-.boton_create_newUser .boton{
+.link_crearCuenta::after{
+  content : " ";
+  position : absolute;
+  width : 100%;
+  height : 2px;
+  margin-top: 200px;
+  background-color: black;
+  bottom: 0;
+  left: 0;
+}
+.link_crearCuenta:hover::after,
+.link_crearCuenta:focus::after{
+  height : 4px;
+  cursor: pointer;
+  
+}
+.parametros_create_newUser .boton{
   height: 2.8rem;
   width: 8rem;
   font-size: 1.2rem;
+  margin: auto;
   background-color: cadetblue;
   border: none;
 }
 
-.boton_create_newUser .boton:hover{
+.boton:hover{
   cursor: pointer;
+}
+
+.titulo_login{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.sorpresa{
+  margin-left: 1rem;
+  transition: all 0.5s ease-in;
+}
+.sorpresa:hover{
+  transform: translate(5%);
+  font-size: 3em;
+  color: pink
 }
