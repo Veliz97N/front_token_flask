@@ -1,21 +1,48 @@
-import React from 'react'
+import React, {useState} from 'react'
+
+
 
 const Signup = () => {
+   
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")    
+    const [confirmPassword, setConfirmPassword] = useState("")    
+
+    async function functionPostear_NuevoUsuario(){
+        
+        const nuevo_usuario={email:email,first_name:firstName,last_name:lastName,password:password}
+        const urlDetalleVenta = "https://3000-lavender-boa-zq9a3sj6.ws-us17.gitpod.io/users"
+        
+        const requestOptions = { 
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(nuevo_usuario),
+        };
+      
+        const response = await fetch(urlDetalleVenta, requestOptions)
+        const data = await response.json()
+        console.log(data)  
+      }
+    
+
+   
+
+
     return (
       <div className="signup">
         <div className="titulo_create_newUser">
           <h1 className="titulo">Create Account</h1>
         </div>
         <div className="parametros_create_newUser">
-            <input className="input_create_newUser" type="text" placeholder="First Name" ></input>
-            <input className="input_create_newUser" type="text" placeholder="Last Name" ></input>
-            <input className="input_create_newUser" type="text" placeholder="Email" ></input>
-            <input className="input_create_newUser" type="password" placeholder="Password" ></input>
-            <input className="input_create_newUser" type="password" placeholder="Confirm Password" ></input>
-        </div>
-        <div className="boton_create_newUser">
-            <button className="boton">Create</button>
-        </div>
+            <input className="input_create_newUser" type="text" placeholder="First Name" value={firstName} onChange={(e)=>setFirstName(e.target.value)} ></input>
+            <input className="input_create_newUser" type="text" placeholder="Last Name" value={lastName} onChange={(e)=>setLastName(e.target.value)}></input>
+            <input className="input_create_newUser" type="text" placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)}></input>
+            <input className="input_create_newUser" type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}></input>
+            <input className="input_create_newUser" type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)}></input>
+            <button className="boton" onClick={functionPostear_NuevoUsuario}>Create</button>
+        </div>        
       </div>
     );
 }

@@ -6,7 +6,7 @@ import Private from "./Private";
 function App() {
   return (
     <div className="App">
-      <Login />
+      <Signup />
     </div>
   );
 }
