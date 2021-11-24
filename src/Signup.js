@@ -14,7 +14,7 @@ const Signup = () => {
     async function functionPostear_NuevoUsuario(){
         
         const nuevo_usuario={email:email,first_name:firstName,last_name:lastName,password:password}
-        const urlDetalleVenta = "https://3000-lavender-boa-zq9a3sj6.ws-us17.gitpod.io/users"
+        const urlDetalleVenta = "https://3000-fuchsia-heron-7yar86y4.ws-us17.gitpod.io/users"
         
         const requestOptions = { 
           method: "POST",
