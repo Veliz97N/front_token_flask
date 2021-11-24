@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 
 const Signup = () => {
-   
+   const navigate = useNavigate()
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -23,7 +24,8 @@ const Signup = () => {
       
         const response = await fetch(urlDetalleVenta, requestOptions)
         const data = await response.json()
-        console.log(data)  
+        console.log(data)
+        navigate("/")
       }
     
 
