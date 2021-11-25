@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
-
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 const Private = () => {
 
+  const token = localStorage.getItem('jwt-token');
+  const [bienvenida, setBienvenida] = useState("")
   async function getMyTasks () {
 
-    const token = localStorage.getItem('jwt-token');
-    const url = "https://3000-fuchsia-heron-7yar86y4.ws-us17.gitpod.io/protected" //aca algo falla, quizas sea el prtected en la base de datos
+    const url = "https://3000-cyan-turtle-g2mcdt5y.ws-us17.gitpod.io/protected" //aca algo falla, quizas sea el prtected en la base de datos
     const requestOptions = { 
       method: "GET",
       headers: { 
@@ -23,22 +24,31 @@ const Private = () => {
    
 
     const data = await resp.json();
-    console.log("This is the data you requested", data);
+
+    setBienvenida("Welcome to our store! "+ data)
     return data
 }
 
+
 useEffect(() => {
-  getMyTasks()
+  if(localStorage.getItem("jwt-token") && localStorage.getItem("jwt-token")!="" && localStorage.getItem("jwt-token")!== undefined){
+    getMyTasks()
+    
+  }
+}, [localStorage.getItem("jwt-token")])
   
-}, [])
 
     return (
       <div className="private">
         <div className="titulo_create_newUser">
-          <h1 className="titulo">Welcome to our store!</h1>
+          {bienvenida!="" ? <h1 className="titulo">{bienvenida}</h1> : <h1 className="titulo">Cargando información del cliente</h1> }
         </div>
+
         <div>
             <h1 className="sorpresa">Que esperabas? Es solo una prueba 😂</h1>
+        </div>
+        <div className="boton_logout">
+          <button className="boton" ><Link to="/" >Log Out</Link></button>
         </div>
       </div>
     );

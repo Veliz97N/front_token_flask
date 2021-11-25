@@ -82,6 +82,18 @@ code {
   background-color: cadetblue;
   border: none;
 }
+.boton_logout .boton{
+  height: 2.8rem;
+  width: 8rem;
+  font-size: 1.2rem;
+  margin: auto;
+  background-color: cadetblue;
+  border: none;
+}
+.boton_logout .boton a{
+  text-decoration: none;
+  color: black;
+}
 
 .boton:hover{
   cursor: pointer;
@@ -101,4 +113,10 @@ code {
   transform: translate(5%);
   font-size: 3em;
   color: pink
+}
+.boton_logout{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
 }

@@ -1,10 +1,10 @@
 import React,{useState} from 'react'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
 const Login = () => {
 
 
-
+    localStorage.removeItem("jwt-token");
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("") 
     const navigate = useNavigate()
@@ -12,7 +12,7 @@ const Login = () => {
     async function functionLogin(){
         
         const nuevo_usuario={email:email, password:password}
-        const urlDetalleVenta = "https://3000-fuchsia-heron-7yar86y4.ws-us17.gitpod.io/login"
+        const urlDetalleVenta = "https://3000-cyan-turtle-g2mcdt5y.ws-us17.gitpod.io/login"
         
         const requestOptions = { 
           method: "POST",
@@ -27,7 +27,7 @@ const Login = () => {
             navigate("/Private")
         }
         else{
-            localStorage.setItem("jwt-token", "");
+            localStorage.removeItem("jwt-token");
         }
         return data
       }
