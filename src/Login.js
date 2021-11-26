@@ -8,7 +8,13 @@ const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("") 
     const navigate = useNavigate()
-
+    const [intento, setIntento] = useState(0)
+    const estilo_crearCuentaCorrecta={
+        color:"black"
+    }
+    const estilo_crearCuentaIncorrecta={
+        color:"red"
+    }
     async function functionLogin(){
         
         const nuevo_usuario={email:email, password:password}
@@ -29,7 +35,9 @@ const Login = () => {
               navigate("/Private");
             } else {
                 alert(data.msg)
-              localStorage.removeItem("jwt-token");
+                setIntento(intento+1)
+                console.log(intento)
+                localStorage.removeItem("jwt-token");
             }
             return data;
         } catch{
@@ -46,7 +54,7 @@ const Login = () => {
             <div className="parametros_create_newUser">
                 <input className="input_create_newUser" type="text" placeholder="Email"value={email} onChange={(e)=>setEmail(e.target.value)}/>
                 <input className="input_create_newUser" type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
-                <Link to="/Signup" className="link_crearCuenta">No tiene cuenta compadre?</Link>
+                <Link to="/Signup" style={intento>=1?estilo_crearCuentaIncorrecta:estilo_crearCuentaCorrecta} className="link_crearCuenta">No tiene cuenta compadre?</Link>
                 <button className="boton" onClick={functionLogin}>Sign in</button>
             </div>
         </div>
