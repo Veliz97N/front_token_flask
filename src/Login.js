@@ -28,6 +28,7 @@ const Login = () => {
             if (data.token) {
               navigate("/Private");
             } else {
+                alert(data.msg)
               localStorage.removeItem("jwt-token");
             }
             return data;

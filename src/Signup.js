@@ -14,25 +14,30 @@ const Signup = () => {
     async function functionPostear_NuevoUsuario(){
         
         const nuevo_usuario={email:email,first_name:firstName,last_name:lastName,password:password}
-        try {
-          const urlDetalleVenta =
-            "https://3000-tan-meadowlark-22dt2hwl.ws-us17.gitpod.io/users";
+        if (password === confirmPassword) {
+          try {
+            const urlDetalleVenta =
+              "https://3000-tan-meadowlark-22dt2hwl.ws-us17.gitpod.io/users";
 
-          const requestOptions = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(nuevo_usuario),
-          };
+            const requestOptions = {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(nuevo_usuario),
+            };
 
-          const response = await fetch(urlDetalleVenta, requestOptions);
-          const data = await response.json();
-          console.log(data);
-          navigate("/");
-        } catch  {
-          alert("Algo no esta funcionando")
-          
+            const response = await fetch(urlDetalleVenta, requestOptions);
+            const data = await response.json();
+            if (response.status === 400) {
+              alert(data.error);
+            } else {
+              navigate("/");
+            }
+          } catch {
+            alert("Algo no esta funcionando");
+          }
+        } else {
+          alert("Las contraseñas deben coincidir");
         }
-        
       }
     
 
