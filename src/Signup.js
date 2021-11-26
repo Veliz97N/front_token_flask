@@ -14,18 +14,25 @@ const Signup = () => {
     async function functionPostear_NuevoUsuario(){
         
         const nuevo_usuario={email:email,first_name:firstName,last_name:lastName,password:password}
-        const urlDetalleVenta = "https://3000-cyan-turtle-g2mcdt5y.ws-us17.gitpod.io/users"
+        try {
+          const urlDetalleVenta =
+            "https://3000-tan-meadowlark-22dt2hwl.ws-us17.gitpod.io/users";
+
+          const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(nuevo_usuario),
+          };
+
+          const response = await fetch(urlDetalleVenta, requestOptions);
+          const data = await response.json();
+          console.log(data);
+          navigate("/");
+        } catch  {
+          alert("Algo no esta funcionando")
+          
+        }
         
-        const requestOptions = { 
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(nuevo_usuario),
-        };
-      
-        const response = await fetch(urlDetalleVenta, requestOptions)
-        const data = await response.json()
-        console.log(data)
-        navigate("/")
       }
     
 

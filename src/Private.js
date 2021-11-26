@@ -6,27 +6,32 @@ const Private = () => {
   const [bienvenida, setBienvenida] = useState("")
   async function getMyTasks () {
 
-    const url = "https://3000-cyan-turtle-g2mcdt5y.ws-us17.gitpod.io/protected" //aca algo falla, quizas sea el prtected en la base de datos
-    const requestOptions = { 
-      method: "GET",
-      headers: { 
-        "Content-Type": "application/json",
-        'Authorization': 'Bearer '+token
-      } 
-    };
-
-    const resp = await fetch(url, requestOptions)
-    if(!resp.ok) return Error("There was a problem in the login request")
-
-    else if(resp.status === 403){
-        return Error("Missing or invalid token");
+    try {
+      const url = "https://3000-tan-meadowlark-22dt2hwl.ws-us17.gitpod.io/protected" //aca algo falla, quizas sea el prtected en la base de datos
+      const requestOptions = { 
+        method: "GET",
+        headers: { 
+          "Content-Type": "application/json",
+          'Authorization': 'Bearer '+token
+        } 
+      };
+  
+      const resp = await fetch(url, requestOptions)
+      if(!resp.ok) return Error("There was a problem in the login request")
+  
+      else if(resp.status === 403){
+          return Error("Missing or invalid token");
+      }
+     
+  
+      const data = await resp.json();
+  
+      setBienvenida("Welcome to our store! "+ data)
+      return data
+    } catch {
+      alert("Ha ocurrido un error realizando el fetch")
     }
    
-
-    const data = await resp.json();
-
-    setBienvenida("Welcome to our store! "+ data)
-    return data
 }
 
 

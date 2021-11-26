@@ -12,24 +12,29 @@ const Login = () => {
     async function functionLogin(){
         
         const nuevo_usuario={email:email, password:password}
-        const urlDetalleVenta = "https://3000-cyan-turtle-g2mcdt5y.ws-us17.gitpod.io/login"
+        try {
+            const urlDetalleVenta =
+              "https://3000-tan-meadowlark-22dt2hwl.ws-us17.gitpod.io/login";
+
+            const requestOptions = {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(nuevo_usuario),
+            };
+
+            const response = await fetch(urlDetalleVenta, requestOptions);
+            const data = await response.json();
+            localStorage.setItem("jwt-token", data.token);
+            if (data.token) {
+              navigate("/Private");
+            } else {
+              localStorage.removeItem("jwt-token");
+            }
+            return data;
+        } catch{
+            alert("Algo no esta funcionando")
+        }
         
-        const requestOptions = { 
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(nuevo_usuario),
-        };
-      
-        const response = await fetch(urlDetalleVenta, requestOptions)
-        const data = await response.json()
-        localStorage.setItem("jwt-token", data.token);
-        if(data.token){
-            navigate("/Private")
-        }
-        else{
-            localStorage.removeItem("jwt-token");
-        }
-        return data
       }
 
     return (
